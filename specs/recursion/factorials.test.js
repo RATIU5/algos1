@@ -11,11 +11,8 @@
 */
 
 function factorial(n) {
-  let sum = n;
-  if (n > 1) {
-    sum *= factorial(n - 1);
-  }
-  return sum;
+  if (n < 2) return 1;
+  return n * factorial(n - 1);
 }
 
 // unit tests

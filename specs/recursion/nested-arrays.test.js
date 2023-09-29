@@ -12,7 +12,7 @@
 function nestedAdd(array) {
   let sum = 0;
   for (let i = 0; i < array.length; i++) {
-    if (typeof array[i] === "object") {
+    if (Array.isArray(array[i])) {
       sum += nestedAdd(array[i]);
     } else {
       sum += array[i];

@@ -21,12 +21,14 @@ const mergeSort = (nums) => {
 
 const merge = (left, right) => {
   const array = [];
-  if (left[0] > right[0]) {
-    array.push(...right, ...left);
-  } else {
-    array.push(...left, ...right);
+  while (left.length && right.length) {
+    if (left[0] <= right[0]) {
+      array.push(left.shift());
+    } else {
+      array.push(right.shift());
+    }
   }
-  return array;
+  return array.concat(left, right);
 };
 
 // unit tests

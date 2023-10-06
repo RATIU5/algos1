@@ -9,22 +9,20 @@
 
 */
 
-function getDigit(number, place) {
-  return Math.floor(Math.abs(number) / Math.pow(10, place)) % 10;
-}
+function getDigit(number, place, longestNumber) {
+  const string = number.toString();
+  const size = string.length;
 
-function countDigits(num) {
-  return Math.abs(num).toString().length;
+  const mod = longestNumber - size;
+  return string[place - mod] || 0;
 }
 
 function getLongestNumber(array) {
   let maxDigits = 0;
 
   for (let i = 0; i < array.length; i++) {
-    const digits = countDigits(array[i]);
-    if (digits > maxDigits) {
-      maxDigits = digits;
-    }
+    const currentLength = array[i].toString().length;
+    maxDigits = currentLength > maxDigits ? currentLength : maxDigits;
   }
 
   return maxDigits;
@@ -32,12 +30,12 @@ function getLongestNumber(array) {
 
 function radixSort(array) {
   const longestNumber = getLongestNumber(array);
-  const buckets = [10].fill().map(() => []);
+  const buckets = new Array(10).fill().map(() => []);
 
   for (let i = longestNumber - 1; i >= 0; i--) {
     while (array.length) {
       const current = array.shift();
-      buckets[getDigit(current, i)].push(current);
+      buckets[getDigit(current, i, longestNumber)].push(current);
     }
 
     for (let j = 0; j < 10; j++) {

@@ -17,12 +17,18 @@ function getDigit(number, place, longestNumber) {
   return string[place - mod] || 0;
 }
 
+function countDigits(num) {
+  return Math.abs(num).toString().length;
+}
+
 function getLongestNumber(array) {
   let maxDigits = 0;
 
   for (let i = 0; i < array.length; i++) {
-    const currentLength = array[i].toString().length;
-    maxDigits = currentLength > maxDigits ? currentLength : maxDigits;
+    const digits = countDigits(array[i]);
+    if (digits > maxDigits) {
+      maxDigits = digits;
+    }
   }
 
   return maxDigits;

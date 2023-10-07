@@ -20,54 +20,31 @@
 class ArrayList {
   constructor() {
     this.list = {};
-  }
-
-  get length() {
-    let count = 0;
-    for (let item in this.list) {
-      if (this.list.hasOwnProperty(item)) {
-        count++;
-      }
-    }
-    return count;
-  }
-
-  _getLastIndex() {
-    let max = 0;
-    for (let item in this.list) {
-      max = max < item ? item : max;
-    }
-    return max;
+    this.length = 0;
   }
 
   push(value) {
-    this.list[this._getLastIndex() + 1] = value;
+    this.list[this.length] = value;
+    this.length++;
   }
 
   pop() {
-    const item = this.list[this._getLastIndex()];
-    delete this.list[this._getLastIndex()];
+    const item = this.list[this.length - 1];
+    delete this.list[this.length - 1];
+    this.length--;
     return item;
   }
 
   get(index) {
-    let item;
-    for (let item in this.list) {
-      if (index === item) {
-        item = this.list[item];
-      }
-    }
-
-    return item;
+    return this.list[index];
   }
 
   delete(index) {
     const item = this.list[index];
     delete this.list[item];
     let i;
-    for (i = index; i < this._getLastIndex(); ++i) {
-      if (index + 1 < this._getLastIndex())
-        this.list[index] = this.list[index + 1];
+    for (i = index; i < this.length; ++i) {
+      if (index + 1 < this.length) this.list[index] = this.list[index + 1];
     }
     return item;
   }

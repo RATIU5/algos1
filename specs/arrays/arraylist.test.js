@@ -24,8 +24,8 @@ class ArrayList {
 
   get length() {
     let count = 0;
-    for (item in this.list) {
-      if (this.list.hasOwnProperty(key)) {
+    for (let item in this.list) {
+      if (this.list.hasOwnProperty(item)) {
         count++;
       }
     }
@@ -34,7 +34,7 @@ class ArrayList {
 
   _getLastIndex() {
     let max = 0;
-    for (item in this.list) {
+    for (let item in this.list) {
       max = max < item ? item : max;
     }
     return max;
@@ -52,7 +52,7 @@ class ArrayList {
 
   get(index) {
     let item;
-    for (item in this.list) {
+    for (let item in this.list) {
       if (index === item) {
         item = this.list[item];
       }

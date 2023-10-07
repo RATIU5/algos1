@@ -18,12 +18,64 @@
 */
 
 class ArrayList {
-  // code goes here
+  constructor() {
+    this.list = {};
+  }
+
+  get length() {
+    let count = 0;
+    for (item in this.list) {
+      if (this.list.hasOwnProperty(key)) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  _getLastIndex() {
+    let max = 0;
+    for (item in this.list) {
+      max = max < item ? item : max;
+    }
+    return max;
+  }
+
+  push(value) {
+    this.list[this._getLastIndex() + 1] = value;
+  }
+
+  pop() {
+    const item = this.list[this._getLastIndex()];
+    delete this.list[this._getLastIndex()];
+    return item;
+  }
+
+  get(index) {
+    let item;
+    for (item in this.list) {
+      if (index === item) {
+        item = this.list[item];
+      }
+    }
+
+    return item;
+  }
+
+  delete(index) {
+    const item = this.list[index];
+    delete this.list[item];
+    let i;
+    for (i = index; i < this._getLastIndex(); ++i) {
+      if (index + 1 < this._getLastIndex())
+        this.list[index] = this.list[index + 1];
+    }
+    return item;
+  }
 }
 
 // unit tests
 // do not modify the below code
-describe.skip("ArrayList", function () {
+describe("ArrayList", function () {
   const range = (length) =>
     Array.apply(null, { length: length }).map(Number.call, Number);
   const abcRange = (length) =>

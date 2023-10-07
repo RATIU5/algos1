@@ -41,11 +41,11 @@ class ArrayList {
 
   delete(index) {
     const item = this.list[index];
-    delete this.list[item];
-    let i;
-    for (i = index; i < this.length; ++i) {
+    for (let i = index; i < this.length; i++) {
       if (index + 1 < this.length) this.list[index] = this.list[index + 1];
     }
+    delete this.list[item];
+    this.length--;
     return item;
   }
 }
